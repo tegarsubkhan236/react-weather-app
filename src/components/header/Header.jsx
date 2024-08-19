@@ -1,4 +1,4 @@
-import {Button, Dropdown, DropdownButton, Form, InputGroup, Nav, Navbar} from "react-bootstrap";
+import {Dropdown, DropdownButton, Form, InputGroup, Nav, Navbar} from "react-bootstrap";
 import {GeoAlt, Moon, Search, Sun, Translate} from "react-bootstrap-icons";
 import {useContext} from "react";
 import {ThemeContext} from "../../context/ThemeContext.jsx";
@@ -60,10 +60,6 @@ function Header({ handleSearchSubmit, searchQuery, setSearchQuery, cityName, sta
                     <Dropdown.Item eventKey="light">Light</Dropdown.Item>
                     <Dropdown.Item eventKey="auto">Auto</Dropdown.Item>
                 </DropdownButton>
-
-                {/*<Button onClick={toggleTheme} className="theme-toggle-button">*/}
-                {/*    {theme === "light" ? <Sun color="black"/> : <Moon/>}*/}
-                {/*</Button>*/}
             </Nav>
         </Navbar>
     );
