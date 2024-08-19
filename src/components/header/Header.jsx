@@ -38,14 +38,32 @@ function Header({ handleSearchSubmit, searchQuery, setSearchQuery, cityName, sta
             </Nav>
 
             <Nav className="ml-auto">
-                <DropdownButton title={<Translate/>} variant={theme} size="md" align="end" onSelect={toggleLanguage}>
+                <DropdownButton
+                    title={<Translate/>}
+                    variant={theme}
+                    size="md"
+                    align="end"
+                    onSelect={toggleLanguage}
+                >
                     <Dropdown.Item eventKey="en" active={language === "en"}>EN</Dropdown.Item>
                     <Dropdown.Item eventKey="id" active={language === "id"}>ID</Dropdown.Item>
                 </DropdownButton>
 
-                <Button onClick={toggleTheme} className="theme-toggle-button">
-                    {theme === "light" ? <Sun color="black"/> : <Moon/>}
-                </Button>
+                <DropdownButton
+                    title={theme === "light" ? <Sun color="black"/> : <Moon/>}
+                    variant={theme}
+                    size="md"
+                    align="end"
+                    onSelect={toggleTheme}
+                >
+                    <Dropdown.Item eventKey="dark">Dark</Dropdown.Item>
+                    <Dropdown.Item eventKey="light">Light</Dropdown.Item>
+                    <Dropdown.Item eventKey="auto">Auto</Dropdown.Item>
+                </DropdownButton>
+
+                {/*<Button onClick={toggleTheme} className="theme-toggle-button">*/}
+                {/*    {theme === "light" ? <Sun color="black"/> : <Moon/>}*/}
+                {/*</Button>*/}
             </Nav>
         </Navbar>
     );
