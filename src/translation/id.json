@@ -1,0 +1,14 @@
+{
+  "hourly_forecast": "Prakiraan Cuaca Per Jam",
+  "weather_overview": "Ringkasan Cuaca",
+  "real_feel": "Terasa Seperti",
+  "wind_direction": "Angin N-E",
+  "pressure": "Tekanan",
+  "sunrise": "Terbit",
+  "sunset": "Terbenam",
+  "weather_status": "Status Cuaca",
+  "chance_of_rain": "Kemungkinan Hujan",
+  "humidity": "Kelembapan",
+  "wind_status": "Status Angin",
+  "days_of_week": ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"]
+}

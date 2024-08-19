@@ -1,6 +1,10 @@
 import {Card, Col, Image, Row, Stack} from "react-bootstrap";
+import {CapitalizeFirstLetterOfEachWord} from "../../helper/converter.js";
+import {translate} from "../../helper/translation.js";
+import {useContext} from "react";
+import {LanguageContext} from "../../context/LanguageContext.jsx";
 
-function WeatherList({
+function WeatherDailyList({
                          index,
                          activeIndex,
                          handleActiveIndex,
@@ -16,12 +20,7 @@ function WeatherList({
                          weather_sunrise,
                          weather_sunset
                      }) {
-
-    function capitalizeFirstLetterOfEachWord(text) {
-        return text.split(' ').map(word =>
-            word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
-        ).join(' ');
-    }
+    const { language } = useContext(LanguageContext);
 
     return (
         <Card
@@ -31,7 +30,6 @@ function WeatherList({
         >
             {index === activeIndex ? (
                 <>
-                    {/*TODO FIX THIS*/}
                     <Card.Header className="m-0" style={{backgroundColor: "#AECADF", color: 'black'}}>
                         <Stack direction="horizontal">
                             <p>{weather_day}</p>
@@ -43,20 +41,20 @@ function WeatherList({
                             <Col md={6}>
                                 <Card.Title>{temperature}°C</Card.Title>
                                 <Card.Text style={{fontSize: '12px'}}>
-                                    <span>Real Feel {real_temperature}°C</span><br/>
-                                    <span>Wind N-E {wind} Km/h</span><br/>
-                                    <span>Pressure {pressure} hPa</span><br/>
-                                    <span>Humidity {humidity}%</span>
+                                    <span>{translate("real_feel", language)} {real_temperature}°C</span><br/>
+                                    <span>{translate("wind_direction", language)} {wind} Km/h</span><br/>
+                                    <span>{translate("pressure", language)} {pressure} hPa</span><br/>
+                                    <span>{translate("humidity", language)} {humidity}%</span>
                                 </Card.Text>
                             </Col>
                             <Col md={6} className="text-end">
                                 <Image src={weather_icon} width={60} height={60}/>
                                 <Card.Subtitle style={{whiteSpace: 'nowrap'}}>
-                                    {capitalizeFirstLetterOfEachWord(weather_icon_desc)}
+                                    {CapitalizeFirstLetterOfEachWord(weather_icon_desc)}
                                 </Card.Subtitle>
                                 <Card.Text style={{fontSize: '12px'}}>
-                                    Sunrise {weather_sunrise} <br/>
-                                    Sunset {weather_sunset}
+                                    <span>{translate("sunrise", language)} {weather_sunrise}</span><br/>
+                                    <span>{translate("sunset", language)} {weather_sunset}</span>
                                 </Card.Text>
                             </Col>
                         </Row>
@@ -79,4 +77,4 @@ function WeatherList({
     );
 }
 
-export default WeatherList;
+export default WeatherDailyList;

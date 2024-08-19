@@ -1,7 +1,13 @@
-import {Button, Form, InputGroup, Nav, Navbar} from "react-bootstrap";
-import {GeoAlt, Moon, Search, Sun} from "react-bootstrap-icons";
+import {Button, Dropdown, DropdownButton, Form, InputGroup, Nav, Navbar} from "react-bootstrap";
+import {GeoAlt, Moon, Search, Sun, Translate} from "react-bootstrap-icons";
+import {useContext} from "react";
+import {ThemeContext} from "../../context/ThemeContext.jsx";
+import {LanguageContext} from "../../context/LanguageContext.jsx";
 
-function Header({ handleSearchSubmit, searchQuery, setSearchQuery, toggleTheme, isLightMode, cityName, stateName, countryName }) {
+function Header({ handleSearchSubmit, searchQuery, setSearchQuery, cityName, stateName, countryName }) {
+    const { theme, toggleTheme } = useContext(ThemeContext);
+    const { language, toggleLanguage } = useContext(LanguageContext);
+
     return (
         <Navbar>
             <Navbar.Brand style={{display: 'flex', alignItems: 'center'}}>
@@ -22,7 +28,7 @@ function Header({ handleSearchSubmit, searchQuery, setSearchQuery, toggleTheme, 
                         </InputGroup.Text>
                         <Form.Control
                             type="search"
-                            placeholder="Search"
+                            placeholder={language === "en" ? "Search" : "Cari"}
                             aria-label="Search"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
@@ -32,11 +38,13 @@ function Header({ handleSearchSubmit, searchQuery, setSearchQuery, toggleTheme, 
             </Nav>
 
             <Nav className="ml-auto">
-                <Button
-                    onClick={toggleTheme}
-                    className="theme-toggle-button"
-                >
-                    {isLightMode ? <Sun color="black"/> : <Moon/>}
+                <DropdownButton title={<Translate/>} variant={theme} size="md" align="end" onSelect={toggleLanguage}>
+                    <Dropdown.Item eventKey="en" active={language === "en"}>EN</Dropdown.Item>
+                    <Dropdown.Item eventKey="id" active={language === "id"}>ID</Dropdown.Item>
+                </DropdownButton>
+
+                <Button onClick={toggleTheme} className="theme-toggle-button">
+                    {theme === "light" ? <Sun color="black"/> : <Moon/>}
                 </Button>
             </Nav>
         </Navbar>

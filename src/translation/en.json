@@ -1,0 +1,14 @@
+{
+  "hourly_forecast": "Hourly Forecast",
+  "weather_overview": "Weather Overview",
+  "real_feel": "Real Feel",
+  "wind_direction": "Wind N-E",
+  "pressure": "Pressure",
+  "humidity": "Humidity",
+  "sunrise": "Sunrise",
+  "sunset": "Sunset",
+  "weather_status": "Weather Status",
+  "chance_of_rain": "Chance Of Rain",
+  "wind_status": "Wind Status",
+  "days_of_week": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+}
