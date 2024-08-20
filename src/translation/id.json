@@ -8,6 +8,7 @@
   "sunset": "Terbenam",
   "weather_status": "Status Cuaca",
   "chance_of_rain": "Kemungkinan Hujan",
+  "no_chance_of_rain": "Tidak Ada Kemungkinan Hujan",
   "humidity": "Kelembapan",
   "wind_status": "Status Angin",
   "days_of_week": ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"]

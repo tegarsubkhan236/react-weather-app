@@ -1,9 +1,11 @@
 import { useState, useEffect, useCallback } from 'react';
-import { getDaysOfWeek } from "../helper/translation.js";
 import { FormatTime, KelvinToCelsius, MpsToKmph } from "../helper/converter.js";
+import {useLanguage} from "../context/LanguageContext.jsx";
 import axios from 'axios';
 
-export const useWeatherData = (initialQuery, language) => {
+export const useWeatherData = (initialQuery) => {
+    const { language, getDaysOfWeek } = useLanguage();
+
     const [locationData, setLocationData] = useState({});
     const [weatherData, setWeatherData] = useState([]);
     const [weatherDataDaily, setWeatherDataDaily] = useState([]);
@@ -18,11 +20,11 @@ export const useWeatherData = (initialQuery, language) => {
         try {
             const locationResponse = await axios.get(`https://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=1&appid=80b22f1cf25c49a05e196ec97eedc3aa`);
             const { lat, lon, name, state, country } = locationResponse.data[0];
-            setLocationData({ latitude: lat, longitude: lon, cityName: name, stateName: state, countryName: country });
+            setLocationData({ cityName: name, stateName: state, countryName: country });
 
             const weatherResponse = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=80b22f1cf25c49a05e196ec97eedc3aa&lang=${language}`);
             const { sunrise, sunset } = weatherResponse.data.city;
-            const daysOfWeekMap = getDaysOfWeek(language);
+            const daysOfWeekMap = getDaysOfWeek();
 
             const allWeatherData = weatherResponse.data.list.map(item => {
                 const date = new Date(item.dt_txt);
@@ -37,6 +39,9 @@ export const useWeatherData = (initialQuery, language) => {
                     wind: MpsToKmph(item.wind.speed),
                     pressure: item.main.pressure,
                     humidity: item.main.humidity,
+                    visibility: item.visibility,
+                    pop: item.pop,
+                    rain: item.rain ? item.rain['3h'] : null,
                     weather_icon: `https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`,
                     weather_icon_desc: item.weather[0].description,
                     weather_sunrise: FormatTime(sunrise, language),
@@ -44,6 +49,7 @@ export const useWeatherData = (initialQuery, language) => {
                 };
             });
 
+            console.log(allWeatherData)
             setWeatherData(allWeatherData);
 
             const sameTimeData = allWeatherData.filter((item, index, arr) => arr.findIndex(data => data.weather_day === item.weather_day) === index);

@@ -1,12 +1,11 @@
 import {Dropdown, DropdownButton, Form, InputGroup, Nav, Navbar} from "react-bootstrap";
 import {GeoAlt, Moon, Search, Sun, Translate} from "react-bootstrap-icons";
-import {useContext} from "react";
-import {ThemeContext} from "../../context/ThemeContext.jsx";
-import {LanguageContext} from "../../context/LanguageContext.jsx";
+import {useTheme} from "../../context/ThemeContext.jsx";
+import {useLanguage} from "../../context/LanguageContext.jsx";
 
-function Header({ handleSearchSubmit, searchQuery, setSearchQuery, cityName, stateName, countryName }) {
-    const { theme, toggleTheme } = useContext(ThemeContext);
-    const { language, toggleLanguage } = useContext(LanguageContext);
+function Header({handleSearchSubmit, searchQuery, setSearchQuery, cityName, stateName, countryName}) {
+    const {theme, toggleTheme} = useTheme();
+    const {language, toggleLanguage} = useLanguage();
 
     return (
         <Navbar>

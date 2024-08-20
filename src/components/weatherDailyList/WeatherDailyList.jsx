@@ -1,8 +1,6 @@
 import {Card, Col, Image, Row, Stack} from "react-bootstrap";
 import {CapitalizeFirstLetterOfEachWord} from "../../helper/converter.js";
-import {translate} from "../../helper/translation.js";
-import {useContext} from "react";
-import {LanguageContext} from "../../context/LanguageContext.jsx";
+import {useLanguage} from "../../context/LanguageContext.jsx";
 
 function WeatherDailyList({
                          index,
@@ -20,7 +18,7 @@ function WeatherDailyList({
                          weather_sunrise,
                          weather_sunset
                      }) {
-    const { language } = useContext(LanguageContext);
+    const { translate } = useLanguage();
 
     return (
         <Card
@@ -41,10 +39,10 @@ function WeatherDailyList({
                             <Col md={6}>
                                 <Card.Title>{temperature}°C</Card.Title>
                                 <Card.Text style={{fontSize: '12px'}}>
-                                    <span>{translate("real_feel", language)} {real_temperature}°C</span><br/>
-                                    <span>{translate("wind_direction", language)} {wind} Km/h</span><br/>
-                                    <span>{translate("pressure", language)} {pressure} hPa</span><br/>
-                                    <span>{translate("humidity", language)} {humidity}%</span>
+                                    <span>{translate("real_feel")} {real_temperature}°C</span><br/>
+                                    <span>{translate("wind_direction")} {wind} Km/h</span><br/>
+                                    <span>{translate("pressure")} {pressure} hPa</span><br/>
+                                    <span>{translate("humidity")} {humidity}%</span>
                                 </Card.Text>
                             </Col>
                             <Col md={6} className="text-end">
@@ -53,8 +51,8 @@ function WeatherDailyList({
                                     {CapitalizeFirstLetterOfEachWord(weather_icon_desc)}
                                 </Card.Subtitle>
                                 <Card.Text style={{fontSize: '12px'}}>
-                                    <span>{translate("sunrise", language)} {weather_sunrise}</span><br/>
-                                    <span>{translate("sunset", language)} {weather_sunset}</span>
+                                    <span>{translate("sunrise")} {weather_sunrise}</span><br/>
+                                    <span>{translate("sunset")} {weather_sunset}</span>
                                 </Card.Text>
                             </Col>
                         </Row>
