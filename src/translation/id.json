@@ -11,5 +11,6 @@
   "no_chance_of_rain": "Tidak Ada Kemungkinan Hujan",
   "humidity": "Kelembapan",
   "wind_status": "Status Angin",
+  "visibility": "Visibilitas",
   "days_of_week": ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"]
 }

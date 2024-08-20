@@ -9,21 +9,17 @@ const translation = {
     id
 }
 
-export const LanguageProvider = ({ children }) => {
-    const getDefaultLanguage = () => {
-        const systemLanguage = navigator.language || 'en';
-        const languageCode = systemLanguage.split('-')[0];
-        return (languageCode === 'id' || languageCode === 'en') ? languageCode : 'en';
-    };
+const getDefaultLanguage = () => {
+    const systemLanguage = navigator.language || 'en';
+    const languageCode = systemLanguage.split('-')[0];
+    return (languageCode === 'id' || languageCode === 'en') ? languageCode : 'en';
+};
 
+export const LanguageProvider = ({ children }) => {
     const [language, setLanguage] = useState(getDefaultLanguage);
 
-    const toggleLanguage = (value) => {
-        if (value === 'en' || value === 'id') {
-            setLanguage(value);
-        } else {
-            setLanguage("en")
-        }
+    const toggleLanguage = (value = 'en') => {
+        setLanguage(['en', 'id'].includes(value) ? value : 'en');
     };
 
     const translate = (key) => {
@@ -31,9 +27,7 @@ export const LanguageProvider = ({ children }) => {
         return languageTranslations[key] || key;
     };
 
-    const getDaysOfWeek = () => {
-        return translation[language]["days_of_week"];
-    };
+    const getDaysOfWeek = () => translation[language]["days_of_week"];
 
     return (
         <LanguageContext.Provider value={{ language, toggleLanguage, translate, getDaysOfWeek }}>

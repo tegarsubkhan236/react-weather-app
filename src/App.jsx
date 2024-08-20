@@ -85,7 +85,7 @@ function App() {
                             <Row className="gx-4 gy-3">
                                 <Col md={6}>
                                     <WeatherOverview
-                                        title={"Wind Status"}
+                                        title={translate("wind_status")}
                                         value={weatherInfo.wind}
                                         unit={"Km/h"}
                                         image={WindStatus}
@@ -101,7 +101,7 @@ function App() {
                                 </Col>
                                 <Col md={6}>
                                     <WeatherOverview
-                                        title={"Humidity"}
+                                        title={translate("humidity")}
                                         value={weatherInfo.humidity}
                                         unit={"%"}
                                         image={Humidity}
@@ -109,9 +109,9 @@ function App() {
                                 </Col>
                                 <Col md={6}>
                                     <WeatherOverview
-                                        title={"Visibility"}
-                                        value={weatherInfo.humidity}
-                                        unit={"%"}
+                                        title={translate("visibility")}
+                                        value={weatherInfo.visibility/1000}
+                                        unit={"Km"}
                                         image={Visibility}
                                     />
                                 </Col>

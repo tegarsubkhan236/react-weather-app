@@ -11,5 +11,6 @@
   "chance_of_rain": "Chance Of Rain",
   "no_chance_of_rain": "No Chance Of Rain",
   "wind_status": "Wind Status",
+  "visibility": "Visibility",
   "days_of_week": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 }
