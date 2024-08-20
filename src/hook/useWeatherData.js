@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from 'react';
-import { API_KEY } from "../helper/constant.js";
 import { getDaysOfWeek } from "../helper/translation.js";
 import { FormatTime, KelvinToCelsius, MpsToKmph } from "../helper/converter.js";
 import axios from 'axios';
@@ -17,11 +16,11 @@ export const useWeatherData = (initialQuery, language) => {
 
     const fetchLocationData = useCallback(async (query) => {
         try {
-            const locationResponse = await axios.get(`https://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=1&appid=${API_KEY}`);
+            const locationResponse = await axios.get(`https://api.openweathermap.org/geo/1.0/direct?q=${query}&limit=1&appid=80b22f1cf25c49a05e196ec97eedc3aa`);
             const { lat, lon, name, state, country } = locationResponse.data[0];
             setLocationData({ latitude: lat, longitude: lon, cityName: name, stateName: state, countryName: country });
 
-            const weatherResponse = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&lang=${language}`);
+            const weatherResponse = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=80b22f1cf25c49a05e196ec97eedc3aa&lang=${language}`);
             const { sunrise, sunset } = weatherResponse.data.city;
             const daysOfWeekMap = getDaysOfWeek(language);
 
